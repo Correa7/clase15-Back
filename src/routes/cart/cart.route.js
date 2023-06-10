@@ -11,6 +11,7 @@ router.use(express.urlencoded({extended:true}))
 router.get('/', (req,res)=> {
     Cart.find({}).lean()
     .then(pr=>{
+        console.log(pr)
         res.render('cart', {
             cart:pr,
             style:'cart.css',
@@ -67,7 +68,7 @@ router.get('/:cId', (req,res)=> {
     })
     .catch(err=>{
         res.status(500).send(
-            console.log('Error loading product')
+            console.log('Error get Cart')
         )
     })  
 })
@@ -75,19 +76,21 @@ router.post('/:cId/product/:pId', (req,res)=>{
     
     const cId = req.params.cId
     const pId = req.params.pId
-    const id = `new ObjectId(${pId})`
 
-    Cart.findOne({_id:cId})
+    Cart.findOne({_id:cId}).populate('products.product')
     .then(pr=>{
-        console.log(pr)
-        let indexProduct = pr.products.findIndex((prod) => prod.product === id)
-        let filtro= pr.products.filter(element => element._id == id)
-        console.log(filtro)
+        // let obj=JSON.stringify(pr, null, '\t')
+        // let parse= JSON.parse(obj)
+        // console.log('############')
+        // console.log(obj)
+
+        let indexProduct = pr.products.findIndex((prod) => prod.product === pId)
         console.log(indexProduct)
               
                 if (indexProduct != -1) {
-                    pr.products[indexProduct].quantity++
-                    Cart.updateOne({_id:cId},pr)
+                    parse.products[indexProduct].quantity++
+
+                    Cart.updateOne({_id:cId},parse)
                     .then(pr=>{
                         console.log('Llego al if de index product')
                         res.render('cart', {
@@ -104,7 +107,7 @@ router.post('/:cId/product/:pId', (req,res)=>{
                 }
                 else {
                     console.log('Llego al else de index product')
-                    pr.products.push({ _id:pId, quantity:1})
+                    pr.products.push({ product:pId, quantity:1})
                     Cart.updateOne({_id:cId},pr)
                     .then(pr=>{
                         res.render('cart', {
