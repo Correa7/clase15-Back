@@ -111,7 +111,7 @@ router.put('/:id', async (req, res) => {
 
     return res.status(201).json({
       status: 'success',
-      msg: 'Product uptaded',
+      msg: 'Product update',
       data:data,
     });
   } catch (e) {

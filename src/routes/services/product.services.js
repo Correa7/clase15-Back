@@ -23,8 +23,8 @@ class ProductServices {
   }
 
   async updateOne(_id,title, description, thumbnail, code, stock, category, status) {
-    const productUptaded = await Product.updateOne({ _id: _id }, {title, description, thumbnail, code, stock, category, status });
-    return productUptaded;
+    const productUpDate = await Product.updateOne({ _id: _id }, {title, description, thumbnail, code, stock, category, status });
+    return productUpDate;
   }
 }
 module.exports = ProductServices 
