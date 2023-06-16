@@ -12,16 +12,18 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({extended:true}))
 
 // Routes
-const routesProducts = require('./routes/products/products.route')
-app.use('/products', routesProducts)
+// const routesProducts = require('./routes/products/products.route')
+// app.use('/products', routesProducts)
 const routesCart = require('./routes/cart/cart.route') 
-app.use('/cart', routesCart)
+app.use('/api/cart', routesCart)
 const routesRealTime = require('./routes/realTimeProduct/realTimeProduct.route')
 app.use('/realTimeProducts', routesRealTime)
 const routesChat = require('./routes/chat/chat.route')
 app.use('/chat', routesChat)
-const productRouter = require('./routes/products/productRouter')
-app.use('/productdata', productRouter)
+const productRouter = require('./routes/products/products.Router')
+app.use('/api/product', productRouter)
+const productviews= require('./routes/products/products.view')
+app.use('/product',productviews)
 
 // Handlebars
 const handlebars = require('express-handlebars')

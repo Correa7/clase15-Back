@@ -1,0 +1,50 @@
+<div class="contenedor-cards" id="z-cards"> 
+    {{#each products}}
+            {{!-- <div class="card" style="width: 15rem;"> --}}
+            <div class="card" >
+            <img src="https://via.placeholder.com/180x180" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <p class="card-text">Description: {{this.description}}</p>
+                <p class="card-text">Price: $<strong>{{this.price}}</strong> || Stock: {{this.stock}}</p>
+                
+            </div>
+            <div class="card-body">
+            <button id="{{this._id}}" class="btn btn-primary">Add to Cart</button>
+            </div>
+        </div>
+  {{/each}}
+</div>
+  {{!-- totalDocs:
+  {{pagination.totalDocs}}
+  limit:
+  {{pagination.limit}}
+  totalPages:
+  {{pagination.totalPages}}
+  page:
+  {{pagination.page}}
+  pagingCounter:
+  {{pagination.pagingCounter}}
+  hasPrevPage:
+  {{pagination.hasPrevPage}}
+  hasNextPage:
+  {{pagination.hasNextPage}}
+  prevPage:
+  {{pagination.prevPage}}
+  nextPage:
+  {{pagination.nextPage}} --}}
+<div>
+  {{#if pagination.hasPrevPage}}
+    <a style='font-size: 20;' href='/productsviews/?page={{pagination.prevPage}}'>⬅{{pagination.prevPage}}</a>
+  {{/if}}
+  <a style='font-size: 20;' href='#'>{{pagination.page}}</a>
+  {{#if pagination.hasNextPage}}
+    <a style='font-size: 20;' href='/productsviews/?page={{pagination.nextPage}}'>{{pagination.nextPage}}➡</a>
+  {{/if}}
+  <br />
+  <br />
+  {{#each links}}
+    <a href='{{this.href}}'>{{this.label}}</a>
+  {{/each}}
+
+</div>
