@@ -20,6 +20,8 @@ const routesRealTime = require('./routes/realTimeProduct/realTimeProduct.route')
 app.use('/realTimeProducts', routesRealTime)
 const routesChat = require('./routes/chat/chat.route')
 app.use('/chat', routesChat)
+const productRouter = require('./routes/products/productRouter')
+app.use('/productdata', productRouter)
 
 // Handlebars
 const handlebars = require('express-handlebars')
