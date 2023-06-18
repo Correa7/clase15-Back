@@ -4,7 +4,7 @@ class ProductServices {
 
   async getAll( page, limit ) {
     
-    const product = await Product.paginate({}, { limit:limit || 5, page: page || 1 });
+    const product = await Product.paginate({}, { limit:limit || 3, page: page || 1 });
     return product;
   }
   async getById(_id) {

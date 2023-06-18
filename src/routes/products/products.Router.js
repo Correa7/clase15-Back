@@ -44,7 +44,7 @@ try {
  const product= await   Service.getById(id)
 return product? 
  res.status(200).json({
-    status: 'success',
+    status: 'success', 
     msg: 'Product Get by ID',
     data: product,
   }):
@@ -106,9 +106,7 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { title, description, thumbnail, code, stock, category, status } = req.body;
    const data= req.body
-   console.log(data)
     await Service.updateOne(id,title, description, thumbnail, code, stock, category, status)
-
     return res.status(201).json({
       status: 'success',
       msg: 'Product update',
