@@ -20,6 +20,8 @@ app.use('/products',productviews)
 // app.use('/products', routesProducts)
 const routesCart = require('./routes/cart/cart.route') 
 app.use('/api/cart', routesCart)
+const cartViews = require('./routes/cart/cart.view')
+app.use('/cart', cartViews)
 
 const routesRealTime = require('./routes/realTimeProduct/realTimeProduct.route')
 app.use('/realTimeProducts', routesRealTime)
@@ -37,6 +39,7 @@ app.set('views', __dirname + '/views/')
 // Sockets set
 const {Server} = require('socket.io')
 const http = require('http')
+const CartView = require('./routes/cart/cart.view')
 const server = http.createServer(app)
 const io = new Server(server)
 

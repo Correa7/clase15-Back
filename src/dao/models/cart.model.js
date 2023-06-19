@@ -1,4 +1,5 @@
 const mongoose= require('mongoose')
+const cartPaginate = require('mongoose-paginate-v2')
 
 const CartSchema = new mongoose.Schema({ 
   date:{
@@ -28,6 +29,9 @@ const CartSchema = new mongoose.Schema({
   CartSchema.pre('findOne', function(){ 
     this.populate('products.product')
   })
-
+  CartSchema.pre('getCart', function(){ 
+    this.populate('docs.products')
+  })
+  CartSchema.plugin(cartPaginate);
 const Cart= mongoose.model('cart', CartSchema)
 module.exports = Cart

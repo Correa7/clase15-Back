@@ -1,13 +1,12 @@
 const express = require('express')
 const ProductServices= require('../services/product.services')
 
-const productViews = express.Router()
+const productViews = express.Router() 
 const Service= new ProductServices()
 
 productViews.get('/', async (req,res)=>{
-
     const {limit, page, sort, ...data} = req.query
-    console.log('esto es query', data, sort)
+
     const productData= await Service.getAll(page,limit,sort, data) 
     const products= productData.docs.map(item=>{
         return {
