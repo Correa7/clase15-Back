@@ -6,11 +6,9 @@ const Service= new ProductServices()
 
 productViews.get('/', async (req,res)=>{
 
-    const {limit, page} = req.query
-    const productData= await Service.getAll(page,limit)
-
-    // console.log(productData)
-
+    const {limit, page, sort, ...data} = req.query
+    console.log('esto es query', data, sort)
+    const productData= await Service.getAll(page,limit,sort, data) 
     const products= productData.docs.map(item=>{
         return {
             title:item.title,
@@ -18,7 +16,7 @@ productViews.get('/', async (req,res)=>{
             price:item.price,
             thumbnail: item.thumbnail,
             code: item.code,
-            stock: item.stock,
+            stock: item.stock, 
             category:item.category,
             status:true,
             _id:item._id
@@ -30,9 +28,8 @@ productViews.get('/', async (req,res)=>{
 
   for (let i = 1; i < rest.totalPages + 1; i++) {
     links.push({ label: i, href: 'http://localhost:8080/products/?page=' + i });
-        console.log(links);
     }
-    console.log(links);
+
 
     return res.status(201).render('products', {
         products:products, 

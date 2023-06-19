@@ -2,10 +2,20 @@ const Product= require('../../dao/models/products.model')
 
 class ProductServices {
 
-  async getAll( page, limit ) {
-    
-    const product = await Product.paginate({}, { limit:limit || 3, page: page || 1 });
+  async getAll( page, limit, sort, data ) {
+    if(sort){
+      const product = await Product.paginate({}, { limit:limit || 3, page: page || 1, sort:{price:sort || 'asc'}});
+    return product; 
+    }
+    else if (data){
+      const product = await Product.paginate(data, { limit:limit || 3, page: page || 1,});
     return product;
+    }
+    else{
+      const product = await Product.paginate({}, { limit:limit || 3, page: page || 1,});
+      return product;
+    }
+
   }
   async getById(_id) {
     const product = await Product.findOne({ _id: _id });
