@@ -1,27 +1,28 @@
- <br><br>
-    <div class="container"><h6>Cart</h6></div>
+<div class="box-title">
+        <h2 class="title">Cart</h2>
+</div>
 
-
-
-
-<div class="contenedor-cards" id="z-cards"> 
-    {{#each products}}
-            <div class="card" >
-            <img src="https://via.placeholder.com/180x180" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{this.title}}</h5>
-                <p class="card-text">Description: {{this.description}}</p>
-                <p class="card-text">Price: $<strong>{{this.price}}</strong> || Stock: {{this.stock}}</p>
-                <br>
-                <p>ID:</p>
-                <p>{{this._id}}</p>
-            </div>
-            <div class="card-body">
-            <button id="{{this._id}}" class="btn btn-primary">Go somewhere</button>
-            </div>
-        </div>
-      
-    {{/each}}
+<div class="box-table">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Thumbnail</th>
+            <th scope="col">title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+            <td><img src="https://via.placeholder.com/180x180"  class="table-img" alt={{this.title}}></td>
+            <td><h5 class="table-title">{{this.title}}</h5></td>
+            <td><h5>$<strong>{{this.price}}</strong></h5></td>
+            <td><h5>{{this.quantity}}</h5></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
 
 

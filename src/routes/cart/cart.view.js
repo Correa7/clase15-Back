@@ -12,7 +12,6 @@ CartView.use(express.urlencoded({extended:true}))
 
 CartView.get('/:cId', async(req,res)=>{
     let id = req.params.cId
-    // let cartData = await Service.getCart(id)
     let cartData = await Cart.findOne({_id:id}).populate('products.product')
     // console.log(cartData) 
     const products= cartData.products.map(item=>{ 
@@ -33,9 +32,7 @@ CartView.get('/:cId', async(req,res)=>{
     // console.log(products) 
     return res.status(201).render('cart', {
         products:products, 
-        // pagination:rest, 
-        // links:links,
-        style:'products.css',
+        style:'cart.css',
         title:'Cart'}) 
 })
 

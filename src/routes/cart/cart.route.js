@@ -209,9 +209,7 @@ router.delete('/:cId/product/:pId', (req,res)=>{
 })
 router.put('/:cId', (req,res)=>{
     let cId = req.params.cId
-    let pId = req.params.pId
     let data = req.body
-    console.log(data)
     Cart.findOne({_id:cId})
     .then(pr=>{
         let arr = data
